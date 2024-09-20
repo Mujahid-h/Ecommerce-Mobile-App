@@ -22,6 +22,7 @@ const Header = ({
       <TouchableOpacity style={styles.btn}>
         <Image source={leftIcon} style={styles.icon} />
       </TouchableOpacity>
+      <Text style={styles.title}>{title}</Text>
       <TouchableOpacity style={styles.btn}>
         <Image source={rightIcon} style={styles.icon} />
       </TouchableOpacity>
@@ -51,5 +52,9 @@ const styles = StyleSheet.create({
     width: 30,
     height: 30,
     tintColor: "#ffffff",
+  },
+  title: {
+    color: "#ffffff",
+    fontSize: 20,
   },
 });

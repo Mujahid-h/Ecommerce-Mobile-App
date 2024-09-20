@@ -5,7 +5,10 @@ import Header from "../common/Header";
 const HomeScreen = () => {
   return (
     <View style={styles.container}>
-      <Header />
+      <Header
+        leftIcon={require("../images/menu.png")}
+        rightIcon={require("../images/cart.png")}
+      />
     </View>
   );
 };

@@ -20,7 +20,7 @@ const HomeScreen = () => {
         <TouchableOpacity style={styles.bottomTab}>
           <Image
             source={require("../images/search.png")}
-            style={styles.bottomTabIcon}
+            style={[styles.bottomTabIcon, { width: 35 }]}
           />
         </TouchableOpacity>
         <TouchableOpacity style={styles.bottomTab}>

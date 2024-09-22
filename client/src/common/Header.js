@@ -19,7 +19,7 @@ const Header = ({
 }) => {
   return (
     <View style={styles.header}>
-      <TouchableOpacity style={styles.btn}>
+      <TouchableOpacity style={styles.btn} onPress={onClickLeftIcon}>
         <Image source={leftIcon} style={styles.icon} />
       </TouchableOpacity>
       <Text style={styles.title}>{title}</Text>

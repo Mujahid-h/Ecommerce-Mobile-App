@@ -1,45 +1,94 @@
 import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
-import React from "react";
-import Header from "../common/Header";
+import React, { useState } from "react";
+import Home from "./tabs/Home";
+import Search from "./tabs/Search";
+import Wishlist from "./tabs/Wishlist";
+import Notification from "./tabs/Notification";
+import User from "./tabs/User";
 
 const HomeScreen = () => {
+  const [selectedTab, setSelectedTab] = useState(0);
   return (
     <View style={styles.container}>
-      <Header
-        leftIcon={require("../images/menu.png")}
-        rightIcon={require("../images/cart.png")}
-        title={"Ecommerce App"}
-      />
+      {selectedTab == 0 ? (
+        <Home />
+      ) : selectedTab == 1 ? (
+        <Search />
+      ) : selectedTab == 2 ? (
+        <Wishlist />
+      ) : selectedTab == 3 ? (
+        <Notification />
+      ) : (
+        <User />
+      )}
       <View style={styles.bottomView}>
-        <TouchableOpacity style={styles.bottomTab}>
+        <TouchableOpacity
+          style={styles.bottomTab}
+          onPress={() => setSelectedTab(0)}
+        >
           <Image
-            source={require("../images/home.png")}
+            source={
+              selectedTab == 0
+                ? require("../images/home_fill.png")
+                : require("../images/home.png")
+            }
             style={styles.bottomTabIcon}
           />
         </TouchableOpacity>
-        <TouchableOpacity style={styles.bottomTab}>
+        <TouchableOpacity
+          style={styles.bottomTab}
+          onPress={() => setSelectedTab(1)}
+        >
           <Image
-            source={require("../images/search.png")}
-            style={[styles.bottomTabIcon, { width: 35 }]}
+            source={
+              selectedTab == 1
+                ? require("../images/search_fill.png")
+                : require("../images/search.png")
+            }
+            style={[
+              styles.bottomTabIcon,
+              selectedTab == 1 ? "" : { width: 35 },
+            ]}
           />
         </TouchableOpacity>
-        <TouchableOpacity style={styles.bottomTab}>
+        <TouchableOpacity
+          style={styles.bottomTab}
+          onPress={() => setSelectedTab(2)}
+        >
           <Image
-            source={require("../images/wishlist.png")}
+            source={
+              selectedTab == 2
+                ? require("../images/wishlist_fill.png")
+                : require("../images/wishlist.png")
+            }
             style={styles.bottomTabIcon}
           />
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.bottomTab}>
+        <TouchableOpacity
+          style={styles.bottomTab}
+          onPress={() => setSelectedTab(3)}
+        >
           <Image
-            source={require("../images/noti.png")}
+            source={
+              selectedTab == 3
+                ? require("../images/noti_fill.png")
+                : require("../images/noti.png")
+            }
             style={styles.bottomTabIcon}
           />
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.bottomTab}>
+        <TouchableOpacity
+          style={styles.bottomTab}
+          onPress={() => setSelectedTab(4)}
+        >
           <Image
-            source={require("../images/profile.png")}
+            source={
+              selectedTab == 4
+                ? require("../images/profile_fill.png")
+                : require("../images/profile.png")
+            }
             style={styles.bottomTabIcon}
           />
         </TouchableOpacity>

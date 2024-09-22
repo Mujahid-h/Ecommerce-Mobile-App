@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "240698971186",
+    "project_id": "myecommercemobile",
+    "storage_bucket": "myecommercemobile.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:240698971186:android:ea46296a6aea2c8280582b",
+        "android_client_info": {
+          "package_name": "com.wa2goose.myEcommerceMobile"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyClcY_PaV7I-sQlw1JJyCgpTXLS0uMLSrU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

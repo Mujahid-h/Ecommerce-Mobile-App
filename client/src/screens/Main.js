@@ -9,7 +9,7 @@ const Main = () => {
   return (
     <Drawer.Navigator>
       <Drawer.Screen
-        name="Home"
+        name="Home Screen"
         component={HomeScreen}
         options={{ headerShown: false }}
       />

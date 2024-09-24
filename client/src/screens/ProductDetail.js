@@ -2,6 +2,8 @@ import { View, Text, StyleSheet, Image } from "react-native";
 import React from "react";
 import Header from "../common/Header";
 import { useNavigation, useRoute } from "@react-navigation/native";
+import CustomButton from "../common/CustomButton";
+import AntDesign from "@expo/vector-icons/AntDesign";
 
 const ProductDetail = () => {
   const navigation = useNavigation();
@@ -28,6 +30,22 @@ const ProductDetail = () => {
           </Text>
         </View>
       </View>
+      <CustomButton
+        title={`Add to Wishlist ${(
+          <AntDesign name="hearto" size={24} color="black" />
+        )}`}
+        bg={"transparent"}
+        color={"#ffc601"}
+        border={"#ffc601"}
+        onClick={() => {}}
+      />
+      <CustomButton
+        title={"Add to Cart"}
+        bg={"#ffc601"}
+        color={"#fff"}
+        border={"transparent"}
+        onClick={() => {}}
+      />
     </View>
   );
 };
@@ -40,6 +58,7 @@ const styles = StyleSheet.create({
   productContainer: {
     width: "90%",
     marginHorizontal: "auto",
+    marginBottom: 30,
   },
   banner: {
     width: "100%",

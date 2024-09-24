@@ -4,10 +4,11 @@ import {
   TouchableOpacity,
   Dimensions,
   StyleSheet,
+  Image,
 } from "react-native";
 import React from "react";
 
-const CustomButton = ({ title, bg, color, onClick, border }) => {
+const CustomButton = ({ title, bg, color, onClick, border, icon }) => {
   return (
     <TouchableOpacity
       style={[styles.btn, { backgroundColor: bg, borderColor: border }]}
@@ -23,6 +24,8 @@ const CustomButton = ({ title, bg, color, onClick, border }) => {
       >
         {title}
       </Text>
+
+      {icon && <Text>{icon}</Text>}
     </TouchableOpacity>
   );
 };
@@ -39,6 +42,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginTop: 30,
     alignSelf: "center",
+  },
+  icon: {
+    width: 24,
+    height: 24,
   },
 });
 

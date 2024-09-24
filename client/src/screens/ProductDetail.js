@@ -31,12 +31,11 @@ const ProductDetail = () => {
         </View>
       </View>
       <CustomButton
-        title={`Add to Wishlist ${(
-          <AntDesign name="hearto" size={24} color="black" />
-        )}`}
+        title={`Add to Wishlist`}
         bg={"transparent"}
         color={"#ffc601"}
         border={"#ffc601"}
+        icon={<AntDesign name="hearto" size={24} color="#ffc601" />}
         onClick={() => {}}
       />
       <CustomButton

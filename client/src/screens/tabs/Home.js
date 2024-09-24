@@ -47,7 +47,7 @@ const Home = () => {
             key={item.id}
             style={styles.productItem}
             onPress={() => {
-              navigation.navigate("ProductDetail"), { data: item };
+              navigation.navigate("ProductDetail", { data: item });
             }}
           >
             <Image source={{ uri: item.image }} style={styles.itemImage} />

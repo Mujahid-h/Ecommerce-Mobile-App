@@ -43,7 +43,9 @@ const ProductDetail = () => {
         bg={"#ffc601"}
         color={"#fff"}
         border={"transparent"}
-        onClick={() => {}}
+        onClick={() => {
+          console.log("Clicked");
+        }}
       />
     </View>
   );

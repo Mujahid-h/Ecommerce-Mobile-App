@@ -36,7 +36,9 @@ const ProductDetail = () => {
         color={"#ffc601"}
         border={"#ffc601"}
         icon={<AntDesign name="hearto" size={24} color="#ffc601" />}
-        onClick={() => {}}
+        onClick={() => {
+          console.log("Clicked");
+        }}
       />
       <CustomButton
         title={"Add to Cart"}

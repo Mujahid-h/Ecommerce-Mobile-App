@@ -24,7 +24,10 @@ const Header = ({
       </TouchableOpacity>
       <Text style={styles.title}>{title}</Text>
       <TouchableOpacity style={styles.btn}>
-        <Image source={rightIcon} style={styles.icon} />
+        <Image
+          source={rightIcon}
+          style={[styles.icon, { width: 24, height: 24 }]}
+        />
       </TouchableOpacity>
     </View>
   );

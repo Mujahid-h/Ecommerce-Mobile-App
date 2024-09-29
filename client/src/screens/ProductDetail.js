@@ -31,7 +31,7 @@ const ProductDetail = () => {
         </View>
       </View>
       <CustomButton
-        title={`Add to Wishlist`}
+        title={"Add to Wishlist"}
         bg={"transparent"}
         color={"#ffc601"}
         border={"#ffc601"}

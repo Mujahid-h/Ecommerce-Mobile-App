@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import React from "react";
 
-const { height, width } = Dimensions.get("window");
+const { width } = Dimensions.get("window");
 
 const Header = ({
   title,

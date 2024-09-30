@@ -57,6 +57,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
+    borderBlockColor: "#000",
+    borderBottomWidth: 0.5,
   },
   productContainer: {
     width: "90%",

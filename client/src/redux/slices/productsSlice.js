@@ -8,7 +8,7 @@ const productsSlice = createSlice({
     addProduct: (state, action) => {
       state.data = action.payload;
     },
-    addToWishlist: (state, action) => {
+    addToWishlist: (state) => {
       state.data = state.data.push();
     },
   },

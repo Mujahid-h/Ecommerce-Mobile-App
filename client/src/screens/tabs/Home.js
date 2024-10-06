@@ -10,10 +10,13 @@ import React, { useEffect, useState } from "react";
 import Header from "../../common/Header";
 import { useNavigation } from "@react-navigation/native";
 import { FlatList } from "react-native-gesture-handler";
+import { useDispatch } from "react-redux";
+import { addProduct } from "../../redux/slices/productsSlice";
 
 const Home = () => {
   const navigation = useNavigation();
   const [products, setProducts] = useState([]);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     getProducts();
@@ -23,7 +26,10 @@ const Home = () => {
     try {
       await fetch("https://fakestoreapi.com/products")
         .then((res) => res.json())
-        .then((json) => setProducts(json));
+        .then((json) => {
+          setProducts(json);
+          dispatch(addProduct(json));
+        });
     } catch (error) {
       console.log("Error while fetching products");
     }

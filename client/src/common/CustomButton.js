@@ -1,11 +1,4 @@
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  Dimensions,
-  StyleSheet,
-  Image,
-} from "react-native";
+import { Text, TouchableOpacity, Dimensions, StyleSheet } from "react-native";
 import React from "react";
 
 const CustomButton = ({ title, bg, color, onClick, border, icon }) => {
@@ -40,7 +33,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 30,
+    marginTop: 20,
     alignSelf: "center",
   },
   icon: {

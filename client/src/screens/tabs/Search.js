@@ -3,8 +3,8 @@ import React from "react";
 import { useSelector } from "react-redux";
 
 const Search = () => {
-  const products = useSelector((state) => state);
-  console.log(products);
+  const products = useSelector((state) => state.product);
+  console.log(JSON.stringify(products));
 
   return (
     <View>

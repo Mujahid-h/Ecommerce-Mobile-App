@@ -11,7 +11,7 @@ import Header from "../../common/Header";
 import { useNavigation } from "@react-navigation/native";
 import { FlatList } from "react-native-gesture-handler";
 import { useDispatch } from "react-redux";
-import { addProduct } from "../../redux/slices/productsSlice";
+import { addProducts } from "../../redux/slices/productsSlice";
 
 const Home = () => {
   const navigation = useNavigation();
@@ -28,12 +28,13 @@ const Home = () => {
         .then((res) => res.json())
         .then((json) => {
           setProducts(json);
-          dispatch(addProduct(json));
+          dispatch(addProducts(json));
         });
     } catch (error) {
       console.log("Error while fetching products");
     }
   };
+
   return (
     <View style={styles.container}>
       <Header

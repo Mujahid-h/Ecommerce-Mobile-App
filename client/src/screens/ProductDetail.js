@@ -4,10 +4,14 @@ import Header from "../common/Header";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import CustomButton from "../common/CustomButton";
 import AntDesign from "@expo/vector-icons/AntDesign";
+import { useDispatch } from "react-redux";
+import { addToWishlist } from "../redux/slices/WishlistSlice";
 
 const ProductDetail = () => {
   const navigation = useNavigation();
   const route = useRoute();
+  const dispatch = useDispatch();
+
   return (
     <View style={styles.container}>
       <Header
@@ -37,7 +41,7 @@ const ProductDetail = () => {
         border={"#ffc601"}
         icon={<AntDesign name="hearto" size={24} color="#ffc601" />}
         onClick={() => {
-          console.log("Clicked");
+          dispatch(addToWishlist(route.params.data));
         }}
       />
       <CustomButton

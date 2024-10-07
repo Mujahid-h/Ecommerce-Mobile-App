@@ -26,7 +26,7 @@ const Header = ({
         <Image source={leftIcon} style={styles.icon} />
       </TouchableOpacity>
       <Text style={styles.title}>{title}</Text>
-      <TouchableOpacity style={styles.btn}>
+      <TouchableOpacity style={[styles.btn, { width: 26, height: 26 }]}>
         <Image source={rightIcon} style={styles.icon} />
         <View style={styles.cartItems}>
           <Text>{cartItems.length}</Text>

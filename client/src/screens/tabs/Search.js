@@ -47,7 +47,12 @@ const Search = () => {
           />
         </View>
         {search !== "" && (
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              setSearch("");
+              filterData("");
+            }}
+          >
             <Image
               source={require("../../images/clear.png")}
               style={{ width: 20, height: 20 }}

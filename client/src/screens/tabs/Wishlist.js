@@ -5,10 +5,12 @@ import {
   FlatList,
   TouchableOpacity,
   Image,
+  Dimensions,
 } from "react-native";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
+import Header from "../../common/Header";
 
 const Wishlist = () => {
   const items = useSelector((state) => state.wishlist.data);
@@ -17,6 +19,7 @@ const Wishlist = () => {
 
   return (
     <View style={styles.container}>
+      <Header title={"Wishlist Items"} />
       <FlatList
         data={wishlistItems}
         renderItem={(item, index) => {

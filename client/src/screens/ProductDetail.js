@@ -6,6 +6,7 @@ import CustomButton from "../common/CustomButton";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import { useDispatch } from "react-redux";
 import { addToWishlist } from "../redux/slices/WishlistSlice";
+import { addToCart } from "../redux/slices/cartSlice";
 
 const ProductDetail = () => {
   const navigation = useNavigation();
@@ -50,7 +51,7 @@ const ProductDetail = () => {
         color={"#fff"}
         border={"transparent"}
         onClick={() => {
-          console.log("Clicked");
+          dispatch(addToCart(route.params.data));
         }}
       />
     </View>

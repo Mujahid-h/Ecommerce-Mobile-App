@@ -7,6 +7,7 @@ import {
   Image,
 } from "react-native";
 import React from "react";
+import { useSelector } from "react-redux";
 
 const { width } = Dimensions.get("window");
 
@@ -17,6 +18,8 @@ const Header = ({
   onClickLeftIcon,
   onClickRightIcon,
 }) => {
+  const cartItems = useSelector((state) => state.cart.data);
+
   return (
     <View style={styles.header}>
       <TouchableOpacity style={styles.btn} onPress={onClickLeftIcon}>
@@ -24,10 +27,10 @@ const Header = ({
       </TouchableOpacity>
       <Text style={styles.title}>{title}</Text>
       <TouchableOpacity style={styles.btn}>
-        <Image
-          source={rightIcon}
-          style={[styles.icon, { width: 24, height: 24 }]}
-        />
+        <Image source={rightIcon} style={styles.icon} />
+        <View style={styles.cartItems}>
+          <Text>{cartItems.length}</Text>
+        </View>
       </TouchableOpacity>
     </View>
   );
@@ -59,5 +62,16 @@ const styles = StyleSheet.create({
   title: {
     color: "#ffffff",
     fontSize: 18,
+  },
+  cartItems: {
+    width: 20,
+    height: 20,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#fff",
+    borderRadius: 10,
+    position: "absolute",
+    top: 0,
+    right: 0,
   },
 });

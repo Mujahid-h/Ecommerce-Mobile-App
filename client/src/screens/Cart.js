@@ -43,7 +43,17 @@ const Cart = () => {
                   ? item.description.substring(0, 30) + "..."
                   : item.description}
               </Text>
-              <Text style={styles.price}>{"$" + item.price}</Text>
+              <View style={styles.qtyView}>
+                <Text style={styles.price}>{"$" + item.price}</Text>
+
+                <TouchableOpacity style={styles.btn}>
+                  <Text style={styles.qty}> - </Text>
+                </TouchableOpacity>
+                <Text style={styles.qty}>{item.qty}</Text>
+                <TouchableOpacity style={styles.btn}>
+                  <Text style={styles.qty}> + </Text>
+                </TouchableOpacity>
+              </View>
             </View>
           </TouchableOpacity>
         )}
@@ -87,6 +97,26 @@ const styles = StyleSheet.create({
     color: "green",
     fontWeight: "600",
     marginTop: 5,
+  },
+  qtyView: {
+    flexDirection: "row",
+    marginTop: 10,
+    alignItems: "center",
+  },
+  btn: {
+    width: 40,
+    padding: 5,
+    alignItems: "center",
+    justifyContent: "center",
+    borderColor: "#000",
+    borderWidth: 0.5,
+    borderRadius: 10,
+    marginHorizontal: 10,
+    backgroundColor: "tomato",
+  },
+  qty: {
+    fontSize: 18,
+    fontWeight: "600",
   },
 });
 

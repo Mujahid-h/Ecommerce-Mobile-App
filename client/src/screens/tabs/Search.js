@@ -29,7 +29,7 @@ const Search = () => {
 
   return (
     <View style={styles.container}>
-      <Header title={"Serach Items"} />
+      <Header title={"Search Items"} />
       <View style={styles.serachView}>
         <View style={styles.inputcontainer}>
           <Image

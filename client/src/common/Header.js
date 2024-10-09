@@ -17,6 +17,7 @@ const Header = ({
   rightIcon,
   onClickLeftIcon,
   onClickRightIcon,
+  isCart,
 }) => {
   const cartItems = useSelector((state) => state.cart.data);
 
@@ -26,12 +27,15 @@ const Header = ({
         <Image source={leftIcon} style={styles.icon} />
       </TouchableOpacity>
       <Text style={styles.title}>{title}</Text>
-      <TouchableOpacity style={styles.btn}>
-        <Image source={rightIcon} style={styles.icon} />
-        <View style={styles.cartItems}>
-          <Text>{cartItems.length}</Text>
-        </View>
-      </TouchableOpacity>
+      {!isCart && <Text></Text>}
+      {isCart && (
+        <TouchableOpacity style={styles.btn}>
+          <Image source={rightIcon} style={styles.icon} />
+          <View style={styles.cartItems}>
+            <Text>{cartItems.length}</Text>
+          </View>
+        </TouchableOpacity>
+      )}
     </View>
   );
 };

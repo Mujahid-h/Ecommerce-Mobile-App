@@ -10,18 +10,18 @@ import {
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
-import Header from "../../common/Header";
+import Header from "../common/Header";
 
-const Wishlist = () => {
-  const items = useSelector((state) => state.wishlist.data);
-  const [wishlistItems, setWishlistItems] = useState(items);
+const Cart = () => {
+  const items = useSelector((state) => state.cart.data);
+  const [cartItems, setCartItems] = useState(items);
   const navigation = useNavigation();
 
   return (
     <View style={styles.container}>
-      <Header title={"Wishlist Items"} />
+      <Header title={"Cart Items"} />
       <FlatList
-        data={wishlistItems}
+        data={cartItems}
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (
           <TouchableOpacity
@@ -90,4 +90,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Wishlist;
+export default Cart;

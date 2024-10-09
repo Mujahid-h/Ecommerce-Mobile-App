@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Image } from "react-native";
+import { View, Text, StyleSheet, Image, ScrollView } from "react-native";
 import React from "react";
 import Header from "../common/Header";
 import { useNavigation, useRoute } from "@react-navigation/native";
@@ -20,40 +20,45 @@ const ProductDetail = () => {
         rightIcon={require("../images/cart.png")}
         title={"Product Details"}
         onClickLeftIcon={() => navigation.goBack()}
+        isCart={true}
       />
-      <View style={styles.productContainer}>
-        <Image
-          source={{ uri: route.params.data.image }}
-          style={styles.banner}
-        />
-        <Text style={styles.name}>{route.params.data.title}</Text>
-        <Text style={styles.desc}>{route.params.data.description}</Text>
-        <View style={{ flexDirection: "row" }}>
-          <Text style={[styles.price]}>Price: </Text>
-          <Text style={[styles.price, { color: "green" }]}>
-            ${route.params.data.price}
-          </Text>
+      <ScrollView>
+        <View style={styles.productContainer}>
+          <Image
+            source={{ uri: route.params.data.image }}
+            style={styles.banner}
+          />
+          <Text style={styles.name}>{route.params.data.title}</Text>
+          <Text style={styles.desc}>{route.params.data.description}</Text>
+          <View style={{ flexDirection: "row" }}>
+            <Text style={[styles.price]}>Price: </Text>
+            <Text style={[styles.price, { color: "green" }]}>
+              ${route.params.data.price}
+            </Text>
+          </View>
+          <View style={{ marginTop: 50 }}>
+            <CustomButton
+              title={"Add to Wishlist"}
+              bg={"transparent"}
+              color={"#ffc601"}
+              border={"#ffc601"}
+              icon={<AntDesign name="hearto" size={24} color="#ffc601" />}
+              onClick={() => {
+                dispatch(addToWishlist(route.params.data));
+              }}
+            />
+            <CustomButton
+              title={"Add to Cart"}
+              bg={"#ffc601"}
+              color={"#fff"}
+              border={"transparent"}
+              onClick={() => {
+                dispatch(addToCart(route.params.data));
+              }}
+            />
+          </View>
         </View>
-      </View>
-      <CustomButton
-        title={"Add to Wishlist"}
-        bg={"transparent"}
-        color={"#ffc601"}
-        border={"#ffc601"}
-        icon={<AntDesign name="hearto" size={24} color="#ffc601" />}
-        onClick={() => {
-          dispatch(addToWishlist(route.params.data));
-        }}
-      />
-      <CustomButton
-        title={"Add to Cart"}
-        bg={"#ffc601"}
-        color={"#fff"}
-        border={"transparent"}
-        onClick={() => {
-          dispatch(addToCart(route.params.data));
-        }}
-      />
+      </ScrollView>
     </View>
   );
 };

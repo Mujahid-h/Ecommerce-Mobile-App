@@ -8,6 +8,7 @@ import {
 } from "react-native";
 import React from "react";
 import { useSelector } from "react-redux";
+import { useNavigation } from "@react-navigation/native";
 
 const { width } = Dimensions.get("window");
 
@@ -20,6 +21,7 @@ const Header = ({
   isCart,
 }) => {
   const cartItems = useSelector((state) => state.cart.data);
+  const navigation = useNavigation();
 
   return (
     <View style={styles.header}>
@@ -29,7 +31,10 @@ const Header = ({
       <Text style={styles.title}>{title}</Text>
       {!isCart && <Text></Text>}
       {isCart && (
-        <TouchableOpacity style={styles.btn}>
+        <TouchableOpacity
+          style={styles.btn}
+          onPress={() => navigation.navigate("Cart")}
+        >
           <Image source={rightIcon} style={styles.icon} />
           <View style={styles.cartItems}>
             <Text>{cartItems.length}</Text>

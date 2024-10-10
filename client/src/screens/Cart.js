@@ -25,7 +25,11 @@ const Cart = () => {
 
   return (
     <View style={styles.container}>
-      <Header title={"Cart Items"} />
+      <Header
+        title={"Cart Items"}
+        leftIcon={require("../images/back.png")}
+        onClickLeftIcon={() => navigation.goBack()}
+      />
       <FlatList
         data={cartItems}
         keyExtractor={(item) => item.id.toString()}

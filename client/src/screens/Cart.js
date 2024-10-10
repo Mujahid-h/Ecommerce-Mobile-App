@@ -7,15 +7,21 @@ import {
   Image,
   Dimensions,
 } from "react-native";
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
 import Header from "../common/Header";
+import { addToCart, removeFromCart } from "../redux/slices/cartSlice";
 
 const Cart = () => {
   const items = useSelector((state) => state.cart.data);
-  const [cartItems, setCartItems] = useState(items);
+  const [cartItems, setCartItems] = useState([]);
   const navigation = useNavigation();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    setCartItems(items);
+  }, [items]);
 
   return (
     <View style={styles.container}>
@@ -46,11 +52,17 @@ const Cart = () => {
               <View style={styles.qtyView}>
                 <Text style={styles.price}>{"$" + item.price}</Text>
 
-                <TouchableOpacity style={styles.btn}>
+                <TouchableOpacity
+                  style={styles.btn}
+                  onPress={() => dispatch(removeFromCart(item))}
+                >
                   <Text style={styles.qty}> - </Text>
                 </TouchableOpacity>
                 <Text style={styles.qty}>{item.qty}</Text>
-                <TouchableOpacity style={styles.btn}>
+                <TouchableOpacity
+                  style={styles.btn}
+                  onPress={() => dispatch(addToCart(item))}
+                >
                   <Text style={styles.qty}> + </Text>
                 </TouchableOpacity>
               </View>

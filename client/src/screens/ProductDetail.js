@@ -90,6 +90,7 @@ const ProductDetail = () => {
                     qty: qty,
                   })
                 );
+                setQty(1);
               }}
             />
           </View>

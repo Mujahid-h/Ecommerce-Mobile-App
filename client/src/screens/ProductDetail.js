@@ -1,5 +1,12 @@
-import { View, Text, StyleSheet, Image, ScrollView } from "react-native";
-import React from "react";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  ScrollView,
+  TouchableOpacity,
+} from "react-native";
+import React, { useState } from "react";
 import Header from "../common/Header";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import CustomButton from "../common/CustomButton";
@@ -12,6 +19,7 @@ const ProductDetail = () => {
   const navigation = useNavigation();
   const route = useRoute();
   const dispatch = useDispatch();
+  const [qty, setQty] = useState(1);
 
   return (
     <View style={styles.container}>
@@ -30,11 +38,34 @@ const ProductDetail = () => {
           />
           <Text style={styles.name}>{route.params.data.title}</Text>
           <Text style={styles.desc}>{route.params.data.description}</Text>
-          <View style={{ flexDirection: "row" }}>
+          <View
+            style={{
+              flexDirection: "row",
+              alignItems: "center",
+              marginTop: 10,
+            }}
+          >
             <Text style={[styles.price]}>Price: </Text>
             <Text style={[styles.price, { color: "green" }]}>
               ${route.params.data.price}
             </Text>
+            <TouchableOpacity
+              style={styles.btn}
+              onPress={() => {
+                if (qty > 1) {
+                  setQty(qty - 1);
+                }
+              }}
+            >
+              <Text style={styles.qty}> - </Text>
+            </TouchableOpacity>
+            <Text style={styles.qty}>{qty}</Text>
+            <TouchableOpacity
+              style={styles.btn}
+              onPress={() => setQty(qty + 1)}
+            >
+              <Text style={styles.qty}> + </Text>
+            </TouchableOpacity>
           </View>
           <View style={{ marginTop: 50 }}>
             <CustomButton
@@ -94,6 +125,21 @@ const styles = StyleSheet.create({
     color: "#000",
     fontWeight: "600",
     flexDirection: "row",
+  },
+  btn: {
+    width: 40,
+    padding: 5,
+    alignItems: "center",
+    justifyContent: "center",
+    borderColor: "#000",
+    borderWidth: 0.5,
+    borderRadius: 10,
+    marginHorizontal: 10,
+    backgroundColor: "tomato",
+  },
+  qty: {
+    fontSize: 18,
+    fontWeight: "600",
   },
 });
 

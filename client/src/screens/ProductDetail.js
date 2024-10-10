@@ -79,12 +79,17 @@ const ProductDetail = () => {
               }}
             />
             <CustomButton
-              title={"Add to Cart"}
-              bg={"#ffc601"}
-              color={"#fff"}
-              border={"transparent"}
+              title="Add to Cart"
+              bg="#ffc601"
+              color="#fff"
+              border="transparent"
               onClick={() => {
-                dispatch(addToCart(route.params.data));
+                dispatch(
+                  addToCart({
+                    ...route.params.data,
+                    qty: qty,
+                  })
+                );
               }}
             />
           </View>

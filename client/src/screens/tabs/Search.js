@@ -97,7 +97,7 @@ const Search = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // backgroundColor: "#fff",
+    backgroundColor: "#fff",
   },
   serachView: {
     height: 50,

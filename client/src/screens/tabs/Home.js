@@ -22,17 +22,31 @@ const Home = () => {
     getProducts();
   }, []);
 
+  // const getProducts = async () => {
+  //   try {
+  //     await fetch("https://fakestoreapi.com/products")
+  //       .then((res) => {
+  //         res.json();
+  //       })
+  //       .then((json) => {
+  //         setProducts(json);
+  //         json.map((item) => (item.qty = 1));
+  //         dispatch(addProducts(json));
+  //       });
+  //   } catch (error) {
+  //     console.log("Error while fetching products");
+  //   }
+  // };
+
   const getProducts = async () => {
     try {
-      await fetch("https://fakestoreapi.com/products")
-        .then((res) => res.json())
-        .then((json) => {
-          setProducts(json);
-          json.map((item) => (item.qty = 1));
-          dispatch(addProducts(json));
-        });
+      const res = await fetch("https://fakestoreapi.com/products");
+      const json = await res.json(); // Ensure the json data is returned
+      json.forEach((item) => (item.qty = 1)); // Add qty field to each product
+      setProducts(json); // Set the products locally
+      dispatch(addProducts(json)); // Dispatch the products to the Redux store
     } catch (error) {
-      console.log("Error while fetching products");
+      console.log("Error while fetching products", error);
     }
   };
 

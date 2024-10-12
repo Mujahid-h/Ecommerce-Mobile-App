@@ -5,6 +5,7 @@ import {
   Image,
   ScrollView,
   TouchableOpacity,
+  Alert,
 } from "react-native";
 import React, { useState } from "react";
 import Header from "../common/Header";
@@ -14,12 +15,38 @@ import AntDesign from "@expo/vector-icons/AntDesign";
 import { useDispatch } from "react-redux";
 import { addToWishlist } from "../redux/slices/WishlistSlice";
 import { addToCart } from "../redux/slices/cartSlice";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const ProductDetail = () => {
   const navigation = useNavigation();
   const route = useRoute();
   const dispatch = useDispatch();
   const [qty, setQty] = useState(1);
+
+  // const checkUserStatus = async () => {
+  //   let status = await AsyncStorage.get("IS_USER_LOGGED_IN");
+  //   let isUserLoggedin = false;
+  //   if (status === null) {
+  //     isUserLoggedin = false;
+  //   } else {
+  //     isUserLoggedin = true;
+  //   }
+  //   return isUserLoggedin
+  // };
+
+  const checkUserStatus = async () => {
+    const status = await AsyncStorage.getItem("IS_USER_LOGGED_IN");
+    return status === "true";
+  };
+
+  const handleAction = async (action) => {
+    const isLoggedIn = await checkUserStatus();
+    if (isLoggedIn) {
+      action();
+    } else {
+      Alert.alert("Login Required", "Please login to continue.");
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -74,24 +101,26 @@ const ProductDetail = () => {
               color={"#ffc601"}
               border={"#ffc601"}
               icon={<AntDesign name="hearto" size={24} color="#ffc601" />}
-              onClick={() => {
-                dispatch(addToWishlist(route.params.data));
-              }}
+              onClick={() =>
+                handleAction(() => dispatch(addToWishlist(route.params.data)))
+              }
             />
             <CustomButton
               title="Add to Cart"
               bg="#ffc601"
               color="#fff"
               border="transparent"
-              onClick={() => {
-                dispatch(
-                  addToCart({
-                    ...route.params.data,
-                    qty: qty,
-                  })
-                );
-                setQty(1);
-              }}
+              onClick={() =>
+                handleAction(() => {
+                  dispatch(
+                    addToCart({
+                      ...route.params.data,
+                      qty: qty,
+                    })
+                  );
+                  setQty(1);
+                })
+              }
             />
           </View>
         </View>

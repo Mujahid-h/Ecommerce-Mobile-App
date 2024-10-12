@@ -16,12 +16,14 @@ import { useDispatch } from "react-redux";
 import { addToWishlist } from "../redux/slices/WishlistSlice";
 import { addToCart } from "../redux/slices/cartSlice";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import AskLogin from "../common/AskLogin";
 
 const ProductDetail = () => {
   const navigation = useNavigation();
   const route = useRoute();
   const dispatch = useDispatch();
   const [qty, setQty] = useState(1);
+  const [modalVisible, setModalVisible] = useState(false);
 
   // const checkUserStatus = async () => {
   //   let status = await AsyncStorage.get("IS_USER_LOGGED_IN");
@@ -44,7 +46,7 @@ const ProductDetail = () => {
     if (isLoggedIn) {
       action();
     } else {
-      Alert.alert("Login Required", "Please login to continue.");
+      setModalVisible(true);
     }
   };
 
@@ -125,6 +127,12 @@ const ProductDetail = () => {
           </View>
         </View>
       </ScrollView>
+      <AskLogin
+        modalVisible={modalVisible}
+        onClose={() => setModalVisible(false)}
+        onClickLogin={() => setModalVisible(false)}
+        onClickSignup={() => setModalVisible(false)}
+      />
     </View>
   );
 };

@@ -50,7 +50,7 @@ const AskLogin = ({ modalVisible, onClickLogin, onClickSignup, onClose }) => {
 const styles = StyleSheet.create({
   modalView: {
     width: Dimensions.get("window").width,
-    height: Dimensions.get("window").height,
+    height: Dimensions.get("window").height + 100,
     position: "absolute",
     top: 0,
     backgroundColor: "rgba(0,0,0,0.7)",
@@ -76,8 +76,8 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
   icon: {
-    width: 24,
-    height: 24,
+    width: 30,
+    height: 30,
   },
   clearBtn: {
     position: "absolute",

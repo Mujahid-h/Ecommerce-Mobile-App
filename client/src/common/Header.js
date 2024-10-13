@@ -1,3 +1,4 @@
+import React from "react";
 import {
   View,
   Text,
@@ -6,7 +7,6 @@ import {
   TouchableOpacity,
   Image,
 } from "react-native";
-import React from "react";
 import { useSelector } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
 
@@ -24,16 +24,21 @@ const Header = ({
   const navigation = useNavigation();
 
   return (
-    <View>
-      <View style={styles.headerContainer}></View>
-
-      <View style={styles.header}>
-        <TouchableOpacity style={styles.btn} onPress={onClickLeftIcon}>
-          <Image source={leftIcon} style={styles.icon} />
-        </TouchableOpacity>
+    <View style={styles.header}>
+      <View style={styles.leftContainer}>
+        {leftIcon ? (
+          <TouchableOpacity style={styles.btn} onPress={onClickLeftIcon}>
+            <Image source={leftIcon} style={styles.icon} />
+          </TouchableOpacity>
+        ) : (
+          <View style={styles.btn} />
+        )}
+      </View>
+      <View style={styles.titleContainer}>
         <Text style={styles.title}>{title}</Text>
-        {!isCart && <Text></Text>}
-        {isCart && (
+      </View>
+      <View style={styles.rightContainer}>
+        {isCart ? (
           <TouchableOpacity
             style={styles.btn}
             onPress={() => navigation.navigate("Cart")}
@@ -43,6 +48,8 @@ const Header = ({
               <Text>{cartItems.length}</Text>
             </View>
           </TouchableOpacity>
+        ) : (
+          <View style={styles.btn} />
         )}
       </View>
     </View>
@@ -52,19 +59,29 @@ const Header = ({
 export default Header;
 
 const styles = StyleSheet.create({
-  headerContainer: {
-    width: width,
-    height: 30,
-    backgroundColor: "#0786DAFD",
-  },
   header: {
     width: width,
-    height: 70,
+    height: 100,
     backgroundColor: "#0786DAFD",
     flexDirection: "row",
-    justifyContent: "space-between",
     alignItems: "center",
+    paddingTop: 25,
     paddingHorizontal: 15,
+  },
+  leftContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "flex-start",
+  },
+  titleContainer: {
+    flex: 2,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  rightContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "flex-end",
   },
   btn: {
     width: 40,
@@ -80,14 +97,15 @@ const styles = StyleSheet.create({
   title: {
     color: "#ffffff",
     fontSize: 18,
+    fontWeight: "bold",
   },
   cartItems: {
-    width: 20,
-    height: 20,
+    width: 18,
+    height: 18,
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#fff",
-    borderRadius: 10,
+    borderRadius: 9,
     position: "absolute",
     top: 0,
     right: 0,

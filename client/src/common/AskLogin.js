@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     height: Dimensions.get("window").height + 100,
     position: "absolute",
     top: 0,
-    backgroundColor: "rgba(0,0,0,0.7)",
+    backgroundColor: "rgba(0,0,0,0.5)",
     justifyContent: "center",
     alignItems: "center",
   },

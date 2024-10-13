@@ -24,23 +24,27 @@ const Header = ({
   const navigation = useNavigation();
 
   return (
-    <View style={styles.header}>
-      <TouchableOpacity style={styles.btn} onPress={onClickLeftIcon}>
-        <Image source={leftIcon} style={styles.icon} />
-      </TouchableOpacity>
-      <Text style={styles.title}>{title}</Text>
-      {!isCart && <Text></Text>}
-      {isCart && (
-        <TouchableOpacity
-          style={styles.btn}
-          onPress={() => navigation.navigate("Cart")}
-        >
-          <Image source={rightIcon} style={styles.icon} />
-          <View style={styles.cartItems}>
-            <Text>{cartItems.length}</Text>
-          </View>
+    <View>
+      <View style={styles.headerContainer}></View>
+
+      <View style={styles.header}>
+        <TouchableOpacity style={styles.btn} onPress={onClickLeftIcon}>
+          <Image source={leftIcon} style={styles.icon} />
         </TouchableOpacity>
-      )}
+        <Text style={styles.title}>{title}</Text>
+        {!isCart && <Text></Text>}
+        {isCart && (
+          <TouchableOpacity
+            style={styles.btn}
+            onPress={() => navigation.navigate("Cart")}
+          >
+            <Image source={rightIcon} style={styles.icon} />
+            <View style={styles.cartItems}>
+              <Text>{cartItems.length}</Text>
+            </View>
+          </TouchableOpacity>
+        )}
+      </View>
     </View>
   );
 };
@@ -48,6 +52,11 @@ const Header = ({
 export default Header;
 
 const styles = StyleSheet.create({
+  headerContainer: {
+    width: width,
+    height: 30,
+    backgroundColor: "#0786DAFD",
+  },
   header: {
     width: width,
     height: 70,

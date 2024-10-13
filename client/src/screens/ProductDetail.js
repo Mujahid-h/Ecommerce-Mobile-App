@@ -130,8 +130,14 @@ const ProductDetail = () => {
       <AskLogin
         modalVisible={modalVisible}
         onClose={() => setModalVisible(false)}
-        onClickLogin={() => setModalVisible(false)}
-        onClickSignup={() => setModalVisible(false)}
+        onClickLogin={() => {
+          setModalVisible(false);
+          navigation.navigate("Login");
+        }}
+        onClickSignup={() => {
+          setModalVisible(false);
+          navigation.navigate("Signup");
+        }}
       />
     </View>
   );

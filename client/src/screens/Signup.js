@@ -8,6 +8,7 @@ import {
   StyleSheet,
   Dimensions,
 } from "react-native";
+import firestore from "@react-native-firebase/firestore";
 
 const Signup = () => {
   const [name, setName] = useState("");

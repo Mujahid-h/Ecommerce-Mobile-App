@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
   tab: {
     marginTop: 50,
     borderBottomColor: "#D3D3D3",
-    borderBottomWidth: 0.5,
+    borderBottomWidth: 1,
     width: "90%",
     alignSelf: "center",
     padding: 10,

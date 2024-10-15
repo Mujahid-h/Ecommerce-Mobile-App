@@ -8,6 +8,7 @@ import {
   StyleSheet,
   Dimensions,
 } from "react-native";
+import firestore from "@react-native-firebase/firestore";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -15,8 +16,14 @@ const Login = () => {
   const navigation = useNavigation();
 
   const handleLogin = () => {
-    // Handle sign-up logic here
-    console.log("Sign-up button pressed");
+    firestore()
+      .collection("Users")
+      // Filter results
+      .where("email", "==", email)
+      .get()
+      .then((querySnapshot) => {
+        console.log(querySnapshot[0]._data);
+      });
   };
 
   return (

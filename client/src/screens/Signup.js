@@ -18,8 +18,18 @@ const Signup = () => {
   const navigation = useNavigation();
 
   const handleSignUp = () => {
-    // Handle sign-up logic here
-    console.log("Sign-up button pressed");
+    firestore()
+      .collection("Users")
+      .add({
+        name,
+        email,
+        mobile,
+        password,
+        confirmPassword,
+      })
+      .then(() => {
+        console.log("User added!");
+      });
   };
 
   return (

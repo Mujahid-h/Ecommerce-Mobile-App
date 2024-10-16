@@ -8,7 +8,8 @@ import {
   StyleSheet,
   Dimensions,
 } from "react-native";
-import firestore from "@react-native-firebase/firestore";
+import { collection, addDoc } from "firebase/firestore";
+import { db } from "../../firebaseconfig";
 
 const Signup = () => {
   const [name, setName] = useState("");
@@ -18,19 +19,21 @@ const Signup = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const navigation = useNavigation();
 
-  const handleSignUp = () => {
-    firestore()
-      .collection("Users")
-      .add({
+  const handleSignUp = async () => {
+    try {
+      console.log("Firestore instance:", db);
+
+      const docRef = await addDoc(collection(db, "Users"), {
         name,
         email,
         mobile,
         password,
         confirmPassword,
-      })
-      .then(() => {
-        console.log("User added!");
       });
+      console.log("User added with ID: ", docRef.id);
+    } catch (e) {
+      console.error("Error adding user: ", e);
+    }
   };
 
   return (

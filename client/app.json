@@ -11,6 +11,7 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
+    
     "ios": {
       "supportsTablet": true
     },
@@ -23,7 +24,17 @@
       "package": "com.wa2goose.myEcommerceMobile"
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/favicon.png",
+      "config": {
+        "firebase": {
+          "apiKey": "AIzaSyBNAtIVsG7GkNQ4R6gnXm6B4o5ZfOWXZQ8",
+          "authDomain": "myecommercemobile.firebaseapp.com",
+          "projectId": "myecommercemobile",
+          "storageBucket": "myecommercemobile.appspot.com",
+          "messagingSenderId": "240698971186",
+          "appId": "1:240698971186:web:f35779391c42efe780582b"
+        }
+      }
     },
     "plugins": [
       "@react-native-firebase/app",

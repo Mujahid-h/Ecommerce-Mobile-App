@@ -8,22 +8,38 @@ import {
   StyleSheet,
   Dimensions,
 } from "react-native";
-import firestore from "@react-native-firebase/firestore";
+import { collection, query, where, getDocs } from "firebase/firestore";
+import { db } from "../../firebaseconfig";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigation = useNavigation();
 
-  const handleLogin = () => {
-    firestore()
-      .collection("Users")
-      // Filter results
-      .where("email", "==", email)
-      .get()
-      .then((querySnapshot) => {
-        console.log(querySnapshot[0]._data);
-      });
+  const handleLogin = async () => {
+    try {
+      const q = query(collection(db, "Users"), where("email", "==", email));
+      const querySnapshot = await getDocs(q);
+
+      if (querySnapshot.empty) {
+        Alert.alert("Error", "No user found with this email");
+        return;
+      }
+
+      const userDoc = querySnapshot.docs[0];
+      const userData = userDoc.data();
+
+      if (userData.password === password) {
+        console.log("Login successful:", userData);
+        // Navigate to the main app screen or perform other actions
+        // navigation.navigate("MainApp");
+      } else {
+        Alert.alert("Error", "Incorrect password");
+      }
+    } catch (error) {
+      console.error("Error during login:", error);
+      Alert.alert("Error", "An error occurred during login");
+    }
   };
 
   return (

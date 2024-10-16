@@ -30,7 +30,7 @@ const Signup = () => {
         password,
         confirmPassword,
       });
-      console.log("User added with ID: ", docRef.id);
+      navigation.navigate("Login");
     } catch (e) {
       console.error("Error adding user: ", e);
     }

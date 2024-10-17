@@ -32,7 +32,7 @@ const Login = () => {
       if (userData.password === password) {
         console.log("Login successful:", userData);
         // Navigate to the main app screen or perform other actions
-        // navigation.navigate("MainApp");
+        navigation.navigate("HomeScreen");
       } else {
         Alert.alert("Error", "Incorrect password");
       }

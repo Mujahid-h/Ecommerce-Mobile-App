@@ -10,10 +10,14 @@ import {
 } from "react-native";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { db } from "../../firebaseconfig";
+import AlertBar from "../common/AlertBar";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [alertMessage, setAlertMessage] = useState("");
+  const [alertType, setAlertType] = useState("");
+  const [showAlert, setShowAlert] = useState(false);
   const navigation = useNavigation();
 
   const handleLogin = async () => {
@@ -22,7 +26,9 @@ const Login = () => {
       const querySnapshot = await getDocs(q);
 
       if (querySnapshot.empty) {
-        Alert.alert("Error", "No user found with this email");
+        setAlertMessage("No user found with this email");
+        setAlertType("error");
+        setShowAlert(true);
         return;
       }
 
@@ -30,15 +36,21 @@ const Login = () => {
       const userData = userDoc.data();
 
       if (userData.password === password) {
-        console.log("Login successful:", userData);
-        // Navigate to the main app screen or perform other actions
+        // console.log("Login successful:", userData);
+        setAlertMessage("Login successful");
+        setAlertType("success");
+        setShowAlert(true);
         navigation.navigate("HomeScreen");
       } else {
-        Alert.alert("Error", "Incorrect password");
+        setAlertMessage("Incorrect password");
+        setAlertType("error");
+        setShowAlert(true);
       }
     } catch (error) {
       console.error("Error during login:", error);
-      Alert.alert("Error", "An error occurred during login");
+      setAlertMessage("An error occurred during login");
+      setAlertType("error");
+      setShowAlert(true);
     }
   };
 

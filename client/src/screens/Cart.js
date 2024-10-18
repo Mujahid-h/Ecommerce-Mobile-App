@@ -81,6 +81,11 @@ const Cart = () => {
           </TouchableOpacity>
         )}
       />
+      {cartItems.length < 1 && (
+        <View style={styles.noItems}>
+          <Text style={styles.noItemsText}>No items in Cart</Text>
+        </View>
+      )}
       {cartItems.length > 0 && (
         <CheckoutLayout items={cartItems.length} total={getTotal()} />
       )}
@@ -141,6 +146,17 @@ const styles = StyleSheet.create({
   },
   qty: {
     fontSize: 18,
+    fontWeight: "600",
+  },
+  noItems: {
+    width: Dimensions.get("window").width,
+    height: "90%",
+    paddingBottom: 100,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  noItemsText: {
+    fontSize: 20,
     fontWeight: "600",
   },
 });

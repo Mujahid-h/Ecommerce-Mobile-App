@@ -14,7 +14,6 @@ import { db } from "../../firebaseconfig";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
   const navigation = useNavigation();
 
   const handleLogin = async () => {

@@ -27,13 +27,13 @@ const ProductDetail = () => {
 
   // const checkUserStatus = async () => {
   //   let status = await AsyncStorage.get("IS_USER_LOGGED_IN");
-  //   let isUserLoggedin = false;
+  //   let isUserLoggedin = true;
   //   if (status === null) {
-  //     isUserLoggedin = false;
+  //     isUserLoggedin = true;
   //   } else {
   //     isUserLoggedin = true;
   //   }
-  //   return isUserLoggedin
+  //   return isUserLoggedin;
   // };
 
   const checkUserStatus = async () => {

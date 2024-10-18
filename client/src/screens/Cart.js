@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
 import Header from "../common/Header";
 import { addToCart, removeFromCart } from "../redux/slices/cartSlice";
+import CheckoutLayout from "../common/CheckoutLayout";
 
 const Cart = () => {
   const items = useSelector((state) => state.cart.data);
@@ -22,6 +23,12 @@ const Cart = () => {
   useEffect(() => {
     setCartItems(items);
   }, [items]);
+
+  const getTotal = () => {
+    let total = 0;
+    cartItems.map((item) => (total = total + item.qty * item.price));
+    return total.toFixed(2);
+  };
 
   return (
     <View style={styles.container}>
@@ -74,6 +81,9 @@ const Cart = () => {
           </TouchableOpacity>
         )}
       />
+      {cartItems.length > 0 && (
+        <CheckoutLayout items={cartItems.length} total={getTotal()} />
+      )}
     </View>
   );
 };

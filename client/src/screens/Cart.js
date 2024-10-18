@@ -64,14 +64,14 @@ const Cart = () => {
                 <Text style={styles.price}>{"$" + item.price}</Text>
 
                 <TouchableOpacity
-                  style={styles.btn}
+                  style={[styles.btn, { marginTop: 10 }]}
                   onPress={() => dispatch(removeFromCart(item))}
                 >
                   <Text style={styles.qty}> - </Text>
                 </TouchableOpacity>
-                <Text style={styles.qty}>{item.qty}</Text>
+                <Text style={[styles.qty, { marginTop: 10 }]}>{item.qty}</Text>
                 <TouchableOpacity
-                  style={styles.btn}
+                  style={[styles.btn, { marginTop: 10 }]}
                   onPress={() => dispatch(addToCart(item))}
                 >
                   <Text style={styles.qty}> + </Text>
@@ -126,7 +126,6 @@ const styles = StyleSheet.create({
   },
   qtyView: {
     flexDirection: "row",
-    marginTop: 10,
     alignItems: "center",
   },
   btn: {

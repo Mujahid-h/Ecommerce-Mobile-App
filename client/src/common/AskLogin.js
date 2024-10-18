@@ -1,3 +1,53 @@
+// import {
+//   View,
+//   Text,
+//   Modal,
+//   StyleSheet,
+//   Dimensions,
+//   TouchableOpacity,
+//   Image,
+// } from "react-native";
+// import React from "react";
+
+// const AskLogin = ({ modalVisible, onClickLogin, onClickSignup, onClose }) => {
+//   return (
+//     <Modal visible={modalVisible} transparent>
+//       <View style={styles.modalView}>
+//         <View style={styles.mainView}>
+//           <TouchableOpacity
+//             style={[styles.btn, { marginTop: 70 }]}
+//             onPress={() => {
+//               onClickLogin();
+//             }}
+//           >
+//             <Text style={styles.btnText}>{"Login "}</Text>
+//           </TouchableOpacity>
+//           <TouchableOpacity
+//             style={[styles.btn, { marginBottom: 30, marginTop: 20 }]}
+//             onPress={() => {
+//               onClickSignup();
+//             }}
+//           >
+//             <Text style={styles.btnText}>{"Create Account "}</Text>
+//           </TouchableOpacity>
+//           <TouchableOpacity
+//             style={styles.clearBtn}
+//             onPress={() => {
+//               onClose();
+//             }}
+//           >
+//             <Image
+//               source={require("../images/clear.png")}
+//               style={styles.icon}
+//             />
+//           </TouchableOpacity>
+//         </View>
+//       </View>
+//     </Modal>
+//   );
+// };
+
+import React from "react";
 import {
   View,
   Text,
@@ -7,7 +57,6 @@ import {
   TouchableOpacity,
   Image,
 } from "react-native";
-import React from "react";
 
 const AskLogin = ({ modalVisible, onClickLogin, onClickSignup, onClose }) => {
   return (
@@ -16,26 +65,17 @@ const AskLogin = ({ modalVisible, onClickLogin, onClickSignup, onClose }) => {
         <View style={styles.mainView}>
           <TouchableOpacity
             style={[styles.btn, { marginTop: 70 }]}
-            onPress={() => {
-              onClickLogin();
-            }}
+            onPress={onClickLogin}
           >
             <Text style={styles.btnText}>{"Login "}</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={[styles.btn, { marginBottom: 30, marginTop: 20 }]}
-            onPress={() => {
-              onClickSignup();
-            }}
+            onPress={onClickSignup}
           >
             <Text style={styles.btnText}>{"Create Account "}</Text>
           </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.clearBtn}
-            onPress={() => {
-              onClose();
-            }}
-          >
+          <TouchableOpacity style={styles.clearBtn} onPress={onClose}>
             <Image
               source={require("../images/clear.png")}
               style={styles.icon}

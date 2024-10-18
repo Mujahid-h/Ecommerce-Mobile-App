@@ -143,6 +143,145 @@ const ProductDetail = () => {
   );
 };
 
+// import React, { useState } from "react";
+// import {
+//   View,
+//   Text,
+//   Image,
+//   ScrollView,
+//   TouchableOpacity,
+//   StyleSheet,
+// } from "react-native";
+// import { useNavigation, useRoute } from "@react-navigation/native";
+// import { useDispatch } from "react-redux";
+// import AsyncStorage from "@react-native-async-storage/async-storage";
+// import { addToWishlist } from "../redux/slices/WishlistSlice";
+// import { addToCart } from "../redux/slices/cartSlice";
+// import Header from "../common/Header";
+// import CustomButton from "../common/CustomButton";
+// import AskLogin from "../common/AskLogin";
+// import { AntDesign } from "@expo/vector-icons";
+
+// const ProductDetail = () => {
+//   const navigation = useNavigation();
+//   const route = useRoute();
+//   const dispatch = useDispatch();
+//   const [qty, setQty] = useState(1);
+//   const [modalVisible, setModalVisible] = useState(false);
+//   const [pendingAction, setPendingAction] = useState(null);
+
+//   const checkUserStatus = async () => {
+//     const status = await AsyncStorage.getItem("IS_USER_LOGGED_IN");
+//     return status === "true";
+//   };
+
+//   const handleAction = async (action, destination) => {
+//     const isLoggedIn = await checkUserStatus();
+//     if (isLoggedIn) {
+//       performAction(action, destination);
+//     } else {
+//       setPendingAction({ action, destination });
+//       setModalVisible(true);
+//     }
+//   };
+
+//   const performAction = (action, destination) => {
+//     action();
+//     navigation.navigate(destination);
+//   };
+
+//   const handleLoginSuccess = () => {
+//     if (pendingAction) {
+//       performAction(pendingAction.action, pendingAction.destination);
+//       setPendingAction(null);
+//     }
+//   };
+
+//   return (
+//     <View style={styles.container}>
+//       <Header
+//         leftIcon={require("../images/back.png")}
+//         rightIcon={require("../images/cart.png")}
+//         title={"Product Details"}
+//         onClickLeftIcon={() => navigation.goBack()}
+//         isCart={true}
+//       />
+//       <ScrollView>
+//         <View style={styles.productContainer}>
+//           <Image
+//             source={{ uri: route.params.data.image }}
+//             style={styles.banner}
+//           />
+//           <Text style={styles.name}>{route.params.data.title}</Text>
+//           <Text style={styles.desc}>{route.params.data.description}</Text>
+//           <View style={styles.priceContainer}>
+//             <Text style={styles.price}>Price: </Text>
+//             <Text style={[styles.price, { color: "green" }]}>
+//               ${route.params.data.price}
+//             </Text>
+//             <TouchableOpacity
+//               style={styles.btn}
+//               onPress={() => {
+//                 if (qty > 1) {
+//                   setQty(qty - 1);
+//                 }
+//               }}
+//             >
+//               <Text style={styles.qty}> - </Text>
+//             </TouchableOpacity>
+//             <Text style={styles.qty}>{qty}</Text>
+//             <TouchableOpacity
+//               style={styles.btn}
+//               onPress={() => setQty(qty + 1)}
+//             >
+//               <Text style={styles.qty}> + </Text>
+//             </TouchableOpacity>
+//           </View>
+//           <View style={styles.buttonContainer}>
+//             <CustomButton
+//               title={"Add to Wishlist"}
+//               bg={"transparent"}
+//               color={"#ffc601"}
+//               border={"#ffc601"}
+//               icon={<AntDesign name="hearto" size={24} color="#ffc601" />}
+//               onClick={() =>
+//                 handleAction(
+//                   () => dispatch(addToWishlist(route.params.data)),
+//                   "Wishlist"
+//                 )
+//               }
+//             />
+//             <CustomButton
+//               title="Add to Cart"
+//               bg="#ffc601"
+//               color="#fff"
+//               border="transparent"
+//               onClick={() =>
+//                 handleAction(() => {
+//                   dispatch(addToCart({ ...route.params.data, qty: qty }));
+//                   setQty(1);
+//                 }, "Cart")
+//               }
+//             />
+//           </View>
+//         </View>
+//       </ScrollView>
+//       <AskLogin
+//         modalVisible={modalVisible}
+//         onClose={() => setModalVisible(false)}
+//         onClickLogin={() => {
+//           setModalVisible(false);
+//           navigation.navigate("Login", { onLoginSuccess: handleLoginSuccess });
+//         }}
+//         onClickSignup={() => {
+//           setModalVisible(false);
+//           navigation.navigate("Signup");
+//         }}
+//       />
+//     </View>
+//   );
+// };
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -168,6 +307,11 @@ const styles = StyleSheet.create({
     marginVertical: 5,
     fontSize: 14,
     color: "gray",
+  },
+  priceContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginTop: 10,
   },
   price: {
     fontSize: 18,

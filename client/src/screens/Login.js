@@ -1,4 +1,42 @@
-import { useNavigation } from "@react-navigation/native";
+// import { useNavigation } from "@react-navigation/native";
+// import React, { useState } from "react";
+// import {
+//   View,
+//   Text,
+//   TextInput,
+//   TouchableOpacity,
+//   StyleSheet,
+//   Dimensions,
+// } from "react-native";
+// import { collection, query, where, getDocs } from "firebase/firestore";
+// import { db } from "../../firebaseconfig";
+
+// const Login = () => {
+//   const [email, setEmail] = useState("");
+//   const [password, setPassword] = useState("");
+//   const navigation = useNavigation();
+
+//   const handleLogin = async () => {
+//     try {
+//       const q = query(collection(db, "Users"), where("email", "==", email));
+//       const querySnapshot = await getDocs(q);
+
+//       if (querySnapshot.empty) {
+//       }
+
+//       const userDoc = querySnapshot.docs[0];
+//       const userData = userDoc.data();
+
+//       if (userData.password === password) {
+//         console.log("Login successful:", userData);
+
+//         // navigation.navigate("HomeScreen");
+//       }
+//     } catch (error) {
+//       console.error("Error during login:", error);
+//     }
+//   };
+
 import React, { useState } from "react";
 import {
   View,
@@ -6,15 +44,18 @@ import {
   TextInput,
   TouchableOpacity,
   StyleSheet,
-  Dimensions,
+  Alert,
 } from "react-native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { db } from "../../firebaseconfig";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigation = useNavigation();
+  const route = useRoute();
 
   const handleLogin = async () => {
     try {
@@ -22,6 +63,9 @@ const Login = () => {
       const querySnapshot = await getDocs(q);
 
       if (querySnapshot.empty) {
+        // Handle user not found
+        Alert.alert("No user found with email");
+        return;
       }
 
       const userDoc = querySnapshot.docs[0];
@@ -29,8 +73,16 @@ const Login = () => {
 
       if (userData.password === password) {
         console.log("Login successful:", userData);
+        await AsyncStorage.setItem("IS_USER_LOGGED_IN", "true");
 
-        // navigation.navigate("HomeScreen");
+        if (route.params?.onLoginSuccess) {
+          route.params.onLoginSuccess();
+        } else {
+          navigation.navigate("HomeScreen");
+        }
+      } else {
+        // Handle incorrect password
+        Alert.alert("Incorrect password");
       }
     } catch (error) {
       console.error("Error during login:", error);

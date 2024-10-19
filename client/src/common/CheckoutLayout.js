@@ -10,6 +10,7 @@ import { useNavigation } from "@react-navigation/native";
 
 const CheckoutLayout = ({ total, items }) => {
   const navigation = useNavigation();
+
   return (
     <View style={styles.container}>
       <View style={styles.tab}>

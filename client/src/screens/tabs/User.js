@@ -1,8 +1,13 @@
 import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 import React from "react";
 import Header from "../../common/Header";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const User = () => {
+  const handleLogout = async () => {
+    await AsyncStorage.setItem("IS_USER_LOGGED_IN", "false");
+  };
+
   return (
     <View style={styles.container}>
       <Header title={"User Profile"} />
@@ -29,7 +34,10 @@ const User = () => {
         <Text style={styles.txt}>Payment Methods</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={[styles.tab, { marginTop: 20 }]}>
+      <TouchableOpacity
+        style={[styles.tab, { marginTop: 20 }]}
+        onPress={handleLogout}
+      >
         <Text style={styles.txt}>Logout</Text>
       </TouchableOpacity>
     </View>

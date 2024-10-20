@@ -164,6 +164,7 @@ import {
 import React, { useState } from "react";
 import Header from "../common/Header";
 import { useNavigation } from "@react-navigation/native";
+import CustomButton from "../common/CustomButton";
 
 // Reusable Component for Address Type Button
 const AddressTypeButton = ({ selected, onPress, label }) => {
@@ -196,8 +197,12 @@ const AddressTypeButton = ({ selected, onPress, label }) => {
 };
 
 const Addressses = () => {
-  const [type, setType] = useState(1); // 0 for Home, 1 for Office
+  const [type, setType] = useState(1);
   const navigation = useNavigation();
+  const [houseNumber, setHouseNumber] = useState("");
+  const [city, setCity] = useState("");
+  const [state, setState] = useState("");
+  const [zipCode, setZipCode] = useState("");
 
   return (
     <View style={styles.container}>
@@ -207,19 +212,31 @@ const Addressses = () => {
         onClickLeftIcon={() => navigation.goBack()}
       />
 
-      {/* Input Fields */}
-      {["Enter House Number", "Enter City", "Enter State", "Enter ZipCode"].map(
-        (placeholder, index) => (
-          <TextInput
-            key={index}
-            style={[styles.input, { marginTop: index === 0 ? 50 : 20 }]}
-            placeholder={placeholder}
-            keyboardType={
-              placeholder === "Enter ZipCode" ? "number-pad" : "default"
-            }
-          />
-        )
-      )}
+      <TextInput
+        style={[styles.input, { marginTop: 50 }]}
+        placeholder="Enter House Number"
+        value={houseNumber}
+        onChangeText={setHouseNumber}
+      />
+      <TextInput
+        style={[styles.input, { marginTop: 20 }]}
+        placeholder="Enter City"
+        value={city}
+        onChangeText={setCity}
+      />
+      <TextInput
+        style={[styles.input, { marginTop: 20 }]}
+        placeholder="Enter State"
+        value={state}
+        onChangeText={setState}
+      />
+      <TextInput
+        style={[styles.input, { marginTop: 20 }]}
+        placeholder="Enter ZipCode"
+        keyboardType="number-pad"
+        value={zipCode}
+        onChangeText={setZipCode}
+      />
 
       {/* Type Selection */}
       <View style={styles.typeView}>
@@ -234,6 +251,14 @@ const Addressses = () => {
           label="Office"
         />
       </View>
+
+      <CustomButton
+        title={"Add New Address"}
+        bg={"orange"}
+        color={"#fff"}
+        onClick={() => {}}
+        border={"transparent"}
+      />
     </View>
   );
 };
@@ -256,7 +281,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     flexDirection: "row",
-    marginTop: 50,
+    marginVertical: 50,
   },
   typeBtn: {
     borderRadius: 10,

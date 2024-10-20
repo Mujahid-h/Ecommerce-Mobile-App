@@ -177,17 +177,20 @@ const Checkout = () => {
         </TouchableOpacity>
         <View style={styles.addressView}>
           <Text style={styles.title}>Address</Text>
-          <Text
-            style={[
-              styles.title,
-              { textDecorationLine: "underline", color: "#0269A0FB" },
-            ]}
+          <TouchableOpacity
             onPress={() => {
               navigation.navigate("Addresses");
             }}
           >
-            Edit Address
-          </Text>
+            <Text
+              style={[
+                styles.title,
+                { textDecorationLine: "underline", color: "#0269A0FB" },
+              ]}
+            >
+              Edit Address
+            </Text>
+          </TouchableOpacity>
         </View>
         <Text
           style={[

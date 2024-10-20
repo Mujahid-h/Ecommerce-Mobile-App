@@ -175,7 +175,20 @@ const Checkout = () => {
           />
           <Text style={styles.paymentMethdodsTxt}>Cash on Delivery</Text>
         </TouchableOpacity>
-        <Text style={styles.title}>Address</Text>
+        <View style={styles.addressView}>
+          <Text style={styles.title}>Address</Text>
+          <Text
+            style={[
+              styles.title,
+              { textDecorationLine: "underline", color: "#0269A0FB" },
+            ]}
+            onPress={() => {
+              navigation.navigate("Addresses");
+            }}
+          >
+            Edit Address
+          </Text>
+        </View>
         <Text
           style={[
             styles.title,
@@ -283,6 +296,14 @@ const styles = StyleSheet.create({
     marginLeft: 15,
     fontSize: 16,
     color: "#000",
+  },
+  addressView: {
+    width: "100%",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    paddingLeft: 0,
+    paddingRight: 20,
   },
 });
 

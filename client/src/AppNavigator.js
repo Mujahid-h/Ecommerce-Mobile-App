@@ -9,6 +9,7 @@ import Login from "./screens/Login";
 import Signup from "./screens/Signup";
 import Checkout from "./screens/Checkout";
 import Addressses from "./screens/Addressses";
+import AddAddress from "./screens/AddAddress";
 
 const AppNavigator = () => {
   const Stack = createNativeStackNavigator();
@@ -49,6 +50,11 @@ const AppNavigator = () => {
         <Stack.Screen
           name="Addresses"
           component={Addressses}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="AddAddress"
+          component={AddAddress}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>

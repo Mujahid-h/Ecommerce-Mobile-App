@@ -166,7 +166,6 @@ import Header from "../common/Header";
 import { useNavigation } from "@react-navigation/native";
 import CustomButton from "../common/CustomButton";
 
-// Reusable Component for Address Type Button
 const AddressTypeButton = ({ selected, onPress, label }) => {
   return (
     <TouchableOpacity

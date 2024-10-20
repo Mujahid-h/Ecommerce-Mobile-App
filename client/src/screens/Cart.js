@@ -13,16 +13,26 @@ import { useNavigation } from "@react-navigation/native";
 import Header from "../common/Header";
 import { addToCart, removeFromCart } from "../redux/slices/cartSlice";
 import CheckoutLayout from "../common/CheckoutLayout";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import AskLogin from "../common/AskLogin";
 
 const Cart = () => {
   const items = useSelector((state) => state.cart.data);
   const [cartItems, setCartItems] = useState([]);
   const navigation = useNavigation();
   const dispatch = useDispatch();
+  const [status, setStatus] = useState("");
+  const [modalVisible, setModalVisible] = useState(true);
 
   useEffect(() => {
     setCartItems(items);
+    checkLogin();
   }, [items]);
+
+  const checkLogin = async () => {
+    const status = await AsyncStorage.getItem("IS_USER_LOGGED_IN");
+    setStatus(status === "true");
+  };
 
   const getTotal = () => {
     let total = 0;
@@ -30,7 +40,7 @@ const Cart = () => {
     return total.toFixed(2);
   };
 
-  return (
+  return status ? (
     <View style={styles.container}>
       <Header
         title={"Cart Items"}
@@ -90,6 +100,22 @@ const Cart = () => {
         <CheckoutLayout items={cartItems.length} total={getTotal()} />
       )}
     </View>
+  ) : (
+    <AskLogin
+      modalVisible={modalVisible}
+      onClose={() => {
+        setModalVisible(false);
+        navigation.goBack();
+      }}
+      onClickLogin={() => {
+        setModalVisible(false);
+        navigation.navigate("Login");
+      }}
+      onClickSignup={() => {
+        setModalVisible(false);
+        navigation.navigate("Signup");
+      }}
+    />
   );
 };
 

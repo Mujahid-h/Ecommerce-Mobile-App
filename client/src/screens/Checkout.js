@@ -205,7 +205,7 @@ const Checkout = () => {
         <Text
           style={[
             styles.title,
-            { marginTop: 10, fontSize: 16, color: "#636363" },
+            { marginTop: 10, fontSize: 16, color: "#636363", marginRight: 20 },
           ]}
         >
           {selectedAddress}
@@ -213,6 +213,7 @@ const Checkout = () => {
         <CustomButton
           bg={"green"}
           title={"Pay & Order"}
+          border={"transparent"}
           color={"#fff"}
           onClick={() => {
             // Your payment logic here

@@ -12,6 +12,7 @@ import { useNavigation } from "@react-navigation/native";
 import CustomButton from "../common/CustomButton";
 import { useDispatch } from "react-redux";
 import { addAddress } from "../redux/slices/addressSlice";
+import uuid from "react-native-uuid";
 
 const AddressTypeButton = ({ selected, onPress, label }) => {
   return (
@@ -111,6 +112,7 @@ const Addressses = () => {
               state,
               zipCode,
               type: type == 0 ? "Home" : "Office",
+              id: uuid.v4(),
             })
           );
           navigation.goBack();

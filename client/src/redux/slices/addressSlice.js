@@ -9,8 +9,11 @@ const addressSlice = createSlice({
     addAddress(state, action) {
       state.data.push(action.payload);
     },
+    deleteAddress(state, action) {
+      state.data = state.data.filter((item) => item.id !== action.payload.id);
+    },
   },
 });
 
-export const { addAddress } = addressSlice.actions;
+export const { addAddress, deleteAddress } = addressSlice.actions;
 export default addressSlice.reducer;

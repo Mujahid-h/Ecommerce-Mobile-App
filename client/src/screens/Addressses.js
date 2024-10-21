@@ -10,13 +10,15 @@ import {
 import React, { useEffect } from "react";
 import Header from "../common/Header";
 import { useIsFocused, useNavigation } from "@react-navigation/native";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { deleteAddress } from "../redux/slices/addressSlice";
 
 const Addressses = () => {
   const navigation = useNavigation();
   const addressList = useSelector((state) => state.address.data);
   const isFocused = useIsFocused();
+  const dispatch = useDispatch();
 
   const defaultAddress = async (item) => {
     await AsyncStorage.setItem(
@@ -42,9 +44,11 @@ const Addressses = () => {
           data={addressList}
           renderItem={({ item, index }) => (
             <TouchableOpacity
-              key={item.id}
+              key={item.type}
               style={styles.productItem}
-              onPress={() => defaultAddress(item)}
+              onPress={() => {
+                defaultAddress(item);
+              }}
             >
               <View style={styles.productTextView}>
                 <Text
@@ -62,7 +66,8 @@ const Addressses = () => {
                   style={[
                     styles.productText,
                     {
-                      backgroundColor: "lightblue",
+                      backgroundColor:
+                        item.type == "Office" ? "lightgreen" : "lightblue",
                       padding: 5,
                       borderRadius: 5,
                     },
@@ -70,15 +75,24 @@ const Addressses = () => {
                 >
                   {item.type}
                 </Text>
-                <View style={{ flexDirection: "row", gap: 10 }}>
-                  <Image
-                    source={require("../images/radio_1.png")}
-                    style={{ width: 24, height: 24 }}
-                  />
-                  <Image
-                    source={require("../images/radio_2.png")}
-                    style={{ width: 24, height: 24 }}
-                  />
+                <View style={{ flexDirection: "row", gap: 20, marginTop: 30 }}>
+                  <TouchableOpacity>
+                    <Image
+                      source={require("../images/edit.png")}
+                      style={{ width: 24, height: 24 }}
+                    />
+                  </TouchableOpacity>
+
+                  <TouchableOpacity
+                    onPress={() => {
+                      dispatch(deleteAddress(item));
+                    }}
+                  >
+                    <Image
+                      source={require("../images/delete.png")}
+                      style={{ width: 24, height: 24 }}
+                    />
+                  </TouchableOpacity>
                 </View>
               </View>
             </TouchableOpacity>
@@ -137,7 +151,6 @@ const styles = StyleSheet.create({
   productBtn: {
     flexDirection: "column",
     justifyContent: "space-between",
-    height: "100%",
     alignItems: "center",
   },
 });

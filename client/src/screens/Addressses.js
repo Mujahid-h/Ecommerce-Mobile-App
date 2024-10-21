@@ -76,7 +76,16 @@ const Addressses = () => {
                   {item.type}
                 </Text>
                 <View style={{ flexDirection: "row", gap: 20, marginTop: 30 }}>
-                  <TouchableOpacity>
+                  <TouchableOpacity
+                    onPress={() => {
+                      navigation.navigate("AddAddress", {
+                        type: "edit",
+                        data: item,
+                      });
+                      {
+                      }
+                    }}
+                  >
                     <Image
                       source={require("../images/edit.png")}
                       style={{ width: 24, height: 24 }}
@@ -101,7 +110,7 @@ const Addressses = () => {
       </View>
       <TouchableOpacity
         style={styles.addAddress}
-        onPress={() => navigation.navigate("AddAddress")}
+        onPress={() => navigation.navigate("AddAddress", { type: "new" })}
       >
         <Text style={styles.addAddressText}>+</Text>
       </TouchableOpacity>

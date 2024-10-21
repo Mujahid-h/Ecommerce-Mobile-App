@@ -60,7 +60,7 @@ const Search = () => {
           </TouchableOpacity>
         )}
       </View>
-      <View style={{ marginTop: 50 }}>
+      <View style={{ marginTop: 20 }}>
         <FlatList
           data={searchedList}
           renderItem={({ item, index }) => (

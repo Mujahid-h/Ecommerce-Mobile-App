@@ -28,9 +28,9 @@ const Addressses = () => {
     navigation.goBack();
   };
 
-  useEffect(() => {
-    console.log(addressList);
-  }, [isFocused]);
+  // useEffect(() => {
+  //   console.log(addressList);
+  // }, [isFocused]);
 
   return (
     <View style={styles.containr}>

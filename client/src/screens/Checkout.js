@@ -216,7 +216,7 @@ const Checkout = () => {
           border={"transparent"}
           color={"#fff"}
           onClick={() => {
-            // Your payment logic here
+            navigation.navigate("HomeScreen");
           }}
         />
       </ScrollView>

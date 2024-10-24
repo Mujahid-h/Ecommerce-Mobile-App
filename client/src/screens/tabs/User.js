@@ -2,8 +2,11 @@ import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 import React from "react";
 import Header from "../../common/Header";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useNavigation } from "@react-navigation/native";
 
 const User = () => {
+  const navigation = useNavigation();
+
   const handleLogout = async () => {
     await AsyncStorage.setItem("IS_USER_LOGGED_IN", "false");
   };
@@ -26,7 +29,10 @@ const User = () => {
         <Text style={styles.txt}>Orders</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={[styles.tab, { marginTop: 20 }]}>
+      <TouchableOpacity
+        style={[styles.tab, { marginTop: 20 }]}
+        onPress={() => navigation.navigate("Addressses")}
+      >
         <Text style={styles.txt}>Address</Text>
       </TouchableOpacity>
 

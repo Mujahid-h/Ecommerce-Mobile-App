@@ -1,10 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const orderSlice = createSlice({
-  name: "products",
+  name: "order",
   initialState: {
     data: null,
-    isLoading: false,
   },
   reducers: {
     orderItem(state, action) {

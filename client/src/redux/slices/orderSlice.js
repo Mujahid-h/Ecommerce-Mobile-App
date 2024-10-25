@@ -1,14 +1,17 @@
-import { StyleSheet, Text, View } from "react-native";
-import React from "react";
+import { createSlice } from "@reduxjs/toolkit";
 
-const orderSlice = () => {
-  return (
-    <View>
-      <Text>orderSlice</Text>
-    </View>
-  );
-};
+const orderSlice = createSlice({
+  name: "products",
+  initialState: {
+    data: null,
+    isLoading: false,
+  },
+  reducers: {
+    orderItem(state, action) {
+      state.data.push(action.payload);
+    },
+  },
+});
 
-export default orderSlice;
-
-const styles = StyleSheet.create({});
+export const { orderItem } = orderSlice.actions;
+export default orderSlice.reducer;

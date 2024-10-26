@@ -34,6 +34,9 @@ const cartSlice = createSlice({
       }
       // If item doesn't exist, do nothing (as we're removing, not adding)
     },
+    clearCart(state) {
+      state.data = []; // Clear all items from the cart
+    },
   },
 });
 

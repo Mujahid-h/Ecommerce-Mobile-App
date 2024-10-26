@@ -11,10 +11,15 @@ import {
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useIsFocused, useNavigation } from "@react-navigation/native";
-import { addToCart, removeFromCart } from "../redux/slices/cartSlice";
+import {
+  addToCart,
+  clearCart,
+  removeFromCart,
+} from "../redux/slices/cartSlice";
 import Header from "../common/Header";
 import CustomButton from "../common/CustomButton";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { orderItem } from "../redux/slices/orderSlice";
 
 const Checkout = () => {
   const items = useSelector((state) => state.cart.data);
@@ -216,7 +221,9 @@ const Checkout = () => {
           border={"transparent"}
           color={"#fff"}
           onClick={() => {
-            navigation.navigate("HomeScreen");
+            dispatch(orderItem(cartItems));
+            dispatch(clearCart());
+            navigation.navigate("OrdersPage");
           }}
         />
       </ScrollView>

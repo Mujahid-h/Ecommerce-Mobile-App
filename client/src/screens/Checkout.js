@@ -7,6 +7,7 @@ import {
   Dimensions,
   TouchableOpacity,
   Image,
+  Alert,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -223,7 +224,7 @@ const Checkout = () => {
           onClick={() => {
             dispatch(orderItem(cartItems));
             dispatch(clearCart());
-            navigation.navigate("OrdersPage");
+            navigation.navigate("Orders");
           }}
         />
       </ScrollView>

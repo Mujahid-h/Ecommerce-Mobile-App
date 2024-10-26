@@ -3,11 +3,19 @@ import { createSlice } from "@reduxjs/toolkit";
 const orderSlice = createSlice({
   name: "order",
   initialState: {
-    data: null,
+    data: [],
   },
   reducers: {
     orderItem(state, action) {
-      state.data.push(action.payload);
+      state.data.push({
+        orderId: "ORD" + Date.now(),
+        orderDate: new Date().toLocaleString(),
+        items: action.payload,
+        totalAmount: action.payload.reduce(
+          (total, item) => total + item.price * item.qty,
+          0
+        ),
+      });
     },
   },
 });

@@ -25,13 +25,16 @@ const User = () => {
         <Text style={styles.txt}>Edit Profile</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={[styles.tab, { marginTop: 20 }]}>
+      <TouchableOpacity
+        style={[styles.tab, { marginTop: 20 }]}
+        onPress={() => navigation.navigate("Orders")}
+      >
         <Text style={styles.txt}>Orders</Text>
       </TouchableOpacity>
 
       <TouchableOpacity
         style={[styles.tab, { marginTop: 20 }]}
-        onPress={() => navigation.navigate("Addressses")}
+        onPress={() => navigation.navigate("Addresses")}
       >
         <Text style={styles.txt}>Address</Text>
       </TouchableOpacity>
